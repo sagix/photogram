@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <style>
+	#container{
+		font-family:"Courier New", Courier, monospace;
+		overflow-y: scroll;
+		position: fixed;
+		bottom: 0px;
+		top: 0px;
+		left: 0px;
+		right: 0px;
+		z-index:-220;
+	}
+	#chooseDir{
+	}
+	
+	@media print{
+		button{
+			display:none;
+		}
+		#container{
+			overflow-y: visible;
+			position:initial;
+		}
+	}
+	.ele{
+		display:inline-block;
+		border: 1px solid grey;
+		width:300px;
+		overflow: auto;
+		margin:10px;
+	}
+	input{
+		box-sizing: border-box;
+		width: 50%;
+		border: none;
+	}
+	img{
+		width:50%;
+		float:left;
+	}
+	.tag{
+		display:block;
+		border-bottom: 1px solid grey;
+		border-left: 1px solid grey;
+		padding:10px;
+		font-size:20px;
+		text-align:center;
+		margin-left: 50%;
+	}
+	.title{
+		border-left: 1px solid grey;
+		display:block;
+		padding:10px;
+		margin-left: 50%;
+	}
+  </style>
+  </head>
+  <body >
+	<div id="container"></div>
+	
+    <button id="chooseDir">Choose directory</button>
+    <button id="print">Print</button>
+  </body>
+  <script src="main.js"></script>
+</html>
