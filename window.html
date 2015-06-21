@@ -36,7 +36,7 @@
 		width: 50%;
 		border: none;
 	}
-	img{
+	.img{
 		width:50%;
 		float:left;
 	}
@@ -55,6 +55,22 @@
 		padding:10px;
 		margin-left: 50%;
 	}
+	#form{
+		display:none;
+		max-width:60%;
+		margin: auto;
+		background-color: #DDFFFFFF;
+	}
+	#form.display{
+		display: block;
+	}
+	#form-img{
+		width: 100%;
+	}
+	#form-tag,
+	#form-title{
+		width: 100%;
+	}
   </style>
   </head>
   <body >
@@ -62,6 +78,14 @@
 	
     <button id="chooseDir">Choose directory</button>
     <button id="print">Print</button>
+	<form id="form">
+	
+		<input id="form-index" type="hidden" name="index" />
+		<img id="form-img"/>
+		<input id="form-tag" name="tag" />
+		<textarea id="form-title" name="title" placeholder="title"></textarea>
+		<input type="submit" text="Valider">
+	</form>
   </body>
   <script src="main.js"></script>
 </html>
