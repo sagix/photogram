@@ -2,6 +2,16 @@
 <html>
   <head>
   <style>
+  html{
+  	height:100%;
+  	font-size: 62.5%;
+    background-color: #DDD;
+  }
+
+  body{
+      font-size:1.6em;
+  	margin: 0;
+  }
 	#container{
 		font-family:"Courier New", Courier, monospace;
 		overflow-y: scroll;
@@ -14,7 +24,7 @@
 	}
 	#chooseDir{
 	}
-	
+
 	@media print{
 		button{
 			display:none;
@@ -30,6 +40,7 @@
 		width:300px;
 		overflow: auto;
 		margin:10px;
+    background-color: #FFF;
 	}
 	input{
 		box-sizing: border-box;
@@ -59,7 +70,8 @@
 		display:none;
 		max-width:60%;
 		margin: auto;
-		background-color: #DDFFFFFF;
+		background-color: rgba(255, 255, 255, .98);
+    padding: 1.6rem;
 	}
 	#form.display{
 		display: block;
@@ -70,19 +82,25 @@
 	#form-tag,
 	#form-title{
 		width: 100%;
+    background-color: #EEE;
+    border:none;
+    margin-bottom:.8rem;
+  	font-family:"Courier New", Courier, monospace;
+    font-size: 2.4rem;
 	}
   </style>
   </head>
   <body >
-	<div id="container"></div>	
+	<div id="container"></div>
         <button id="chooseDir">Choose directory</button>
         <button id="print">Print</button>
 	<form id="form">
-	
+
 		<input id="form-index" type="hidden" name="index" />
 		<img id="form-img"/>
 		<input id="form-tag" name="tag" />
 		<textarea id="form-title" name="title" placeholder="title"></textarea>
+    <button id="form-close">Fermer</button>
 		<input type="submit" text="Valider">
 	</form>
   </body>
