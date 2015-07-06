@@ -1,6 +1,6 @@
 {
-  "name": "Hello World!",
-  "description": "My first Chrome App.",
+  "name": "Thumbnail Rush",
+  "description": "Small application to generate thumbnail of rushes.",
   "version": "0.1",
   "manifest_version": 2,
   "app": {
@@ -9,6 +9,6 @@
     }
   },
   "permissions": [
-	{"fileSystem": ["write", "retainEntries", "directory"]} 
+	{"fileSystem": ["write", "retainEntries", "directory"]}
   ]
 }
