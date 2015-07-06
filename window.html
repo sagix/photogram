@@ -22,7 +22,8 @@
 		right: 0px;
 		z-index:-220;
 	}
-	#chooseDir{
+	#print{
+        float:right;
 	}
 
 	@media print{
@@ -82,18 +83,57 @@
 	#form-tag,
 	#form-title{
 		width: 100%;
-    background-color: #EEE;
-    border:none;
-    margin-bottom:.8rem;
-  	font-family:"Courier New", Courier, monospace;
-    font-size: 2.4rem;
+        background-color: #EEE;
+        border:none;
+        margin-bottom:.8rem;
+      	font-family:"Courier New", Courier, monospace;
+        font-size: 2.4rem;
 	}
+    #btn-folder-image{
+        background-color: transparent;
+        display: block;
+        margin: auto;
+        width: 24rem;
+        height: 24rem;
+        border-radius: 100%;
+    }
+    #btn-folder-image.selected{
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+    #svg-folder-image{
+        margin: 2rem;
+        width: 20rem;
+        color: rgba(0, 0, 0, .8);
+        fill: currentColor;
+    }
+    .icon-64{
+        width: 4.8rem;
+        height: 4.8rem;
+    }
   </style>
   </head>
   <body >
+      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="display: none;">
+        <defs>
+            <g id="icon-folder-image">
+                    <path d="M5,17L9.5,11L13,15.5L15.5,12.5L19,17M20,6H12L10,4H4A2,2 0 0,0 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V8A2,2 0 0,0 20,6Z" />
+            </g>
+            <g id="icon-print">
+                <path d="M18,3H6V7H18M19,12A1,1 0 0,1 18,11A1,1 0 0,1 19,10A1,1 0 0,1 20,11A1,1 0 0,1 19,12M16,19H8V14H16M19,8H5A3,3 0 0,0 2,11V17H6V21H18V17H22V11A3,3 0 0,0 19,8Z" />
+            </g>
+        </defs>
+    </svg>
+    <div id="btn-folder-image">
+        <svg id="svg-folder-image" viewBox="0 0 24 24">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-folder-image" />
+        </svg>
+    </div>
 	<div id="container"></div>
-        <button id="chooseDir">Choose directory</button>
-        <button id="print">Print</button>
+    <button id="print">
+        <svg class="icon-64" viewBox="0 0 24 24">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-print" />
+        </svg>
+    </button>
 	<form id="form">
 
 		<input id="form-index" type="hidden" name="index" />

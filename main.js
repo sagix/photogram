@@ -21,6 +21,7 @@ function loadDirEntry(chosenEntry) {
 					  }
                       if (index === array.length - 1) {
                           bindData();
+                          elements.update();
                          displayForm(0, true);
                      }
 				});

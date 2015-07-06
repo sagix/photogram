@@ -8,13 +8,15 @@ var elements = {
         document.getElementById('print').addEventListener('click', function (){
           window.print();
         });
-        document.getElementById('chooseDir').addEventListener('click', function (){
+        document.getElementById('btn-folder-image').addEventListener('click', this.chooseDir);
+        this.update();
+    },
+    chooseDir : function (){
           chrome.fileSystem.chooseEntry({
-        	  type: "openDirectory"
+              type: "openDirectory"
           },  function(entry, fileEntries) {
-        	  loadDirEntry(entry);
+              loadDirEntry(entry);
           });
-        });
     },
     add : function (url, tagText){
         var ele = document.createElement("div");
@@ -46,6 +48,15 @@ var elements = {
             evt.preventDefault();
         });
         this.index++;
+    },
+    update: function(){
+        if(this.index > 0){
+            document.getElementById('btn-folder-image').style.display = "none";
+            document.getElementById('print').style.display = "";
+        }else{
+            document.getElementById('btn-folder-image').style.display = "";
+            document.getElementById('print').style.display = "none";
+        }
     }
 };
 
