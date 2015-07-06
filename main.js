@@ -5,7 +5,7 @@ window.addEventListener('load', function(){
 })
 
 function loadDirEntry(chosenEntry) {
-  if (chosenEntry.isDirectory) {
+  if (chosenEntry !== undefined && chosenEntry.isDirectory) {
     var dirReader = chosenEntry.createReader();
        dirReader.readEntries (function(results) {
           results.forEach(function(item, index, array) {

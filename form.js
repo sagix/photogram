@@ -4,7 +4,8 @@ var form = {
     init : function(){
         this.node = document.getElementById('form')
         this.node.addEventListener('submit', function(evt){
-            form.submit(evt);
+            form.submit();
+            evt.preventDefault();
         });
     },
     open : function(){
@@ -31,7 +32,7 @@ var form = {
             form.close();
           }
       },
-    submit : function(evt){
+    submit : function(){
         var index = this.node.index.value;
         ele = document.getElementsByClassName('ele')[index];
         ele.getElementsByClassName('tag')[0].textContent = this.node.tag.value;
@@ -41,6 +42,5 @@ var form = {
         }else{
             this.close();
         }
-        evt.preventDefault();
     }
 }

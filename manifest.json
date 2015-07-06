@@ -10,5 +10,6 @@
   },
   "permissions": [
 	{"fileSystem": ["write", "retainEntries", "directory"]}
-  ]
+  ],
+  "icons": {"128": "icon.png" }
 }
