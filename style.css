@@ -1,0 +1,108 @@
+html{
+    height:100%;
+    font-size: 62.5%;
+  background-color: #DDD;
+}
+
+body{
+    font-size:1.6em;
+    margin: 0;
+}
+  #container{
+      font-family:"Courier New", Courier, monospace;
+      overflow-y: scroll;
+      position: fixed;
+      bottom: 0px;
+      top: 0px;
+      left: 0px;
+      right: 0px;
+      z-index:-220;
+  }
+  #print{
+      float:right;
+  }
+
+  @media print{
+      button{
+          display:none;
+      }
+      #container{
+          overflow-y: visible;
+          position:initial;
+      }
+  }
+  .ele{
+      display:inline-block;
+      border: 1px solid grey;
+      width:300px;
+      overflow: auto;
+      margin:10px;
+  background-color: #FFF;
+  }
+  input{
+      box-sizing: border-box;
+      width: 50%;
+      border: none;
+  }
+  .img{
+      width:50%;
+      float:left;
+  }
+  .tag{
+      display:block;
+      border-bottom: 1px solid grey;
+      border-left: 1px solid grey;
+      padding:10px;
+      font-size:20px;
+      text-align:center;
+      margin-left: 50%;
+  }
+  .title{
+      border-left: 1px solid grey;
+      display:block;
+      padding:10px;
+      margin-left: 50%;
+  }
+  #form{
+      display:none;
+      max-width:60%;
+      margin: auto;
+      background-color: rgba(255, 255, 255, .98);
+  padding: 1.6rem;
+  }
+  #form.display{
+      display: block;
+  }
+  #form-img{
+      width: 100%;
+  }
+  #form-tag,
+  #form-title{
+      width: 100%;
+      background-color: #EEE;
+      border:none;
+      margin-bottom:.8rem;
+        font-family:"Courier New", Courier, monospace;
+      font-size: 2.4rem;
+  }
+  #btn-folder-image{
+      background-color: transparent;
+      display: block;
+      margin: auto;
+      width: 24rem;
+      height: 24rem;
+      border-radius: 100%;
+  }
+  #btn-folder-image.selected{
+      background-color: rgba(0, 0, 0, 0.2);
+  }
+  #svg-folder-image{
+      margin: 2rem;
+      width: 20rem;
+      color: rgba(0, 0, 0, .8);
+      fill: currentColor;
+  }
+  .icon-64{
+      width: 4.8rem;
+      height: 4.8rem;
+  }
