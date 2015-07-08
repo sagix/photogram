@@ -1,15 +1,17 @@
 {
-  "name": "Thumbnail Rush",
-  "description": "Small application to generate thumbnail of rushes.",
-  "version": "0.1",
-  "manifest_version": 2,
-  "app": {
-    "background": {
-      "scripts": ["background.js"]
+    "name": "Thumbnail Rush",
+    "description": "Small application to generate thumbnail of rushes.",
+    "version": "0.1",
+    "manifest_version": 2,
+    "app": {
+        "background": {
+            "scripts": ["background.js"]
+        }
+    },
+    "permissions": [{
+        "fileSystem": ["write", "retainEntries", "directory"]
+    }],
+    "icons": {
+        "128": "icon.png"
     }
-  },
-  "permissions": [
-	{"fileSystem": ["write", "retainEntries", "directory"]}
-  ],
-  "icons": {"128": "icon.png" }
 }
