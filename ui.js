@@ -1,7 +1,7 @@
 var elements = {
     index: 0,
     init: function() {
-        this.container = document.getElementById('container')
+        this.container = document.getElementById('group-ele')
         document.getElementById('form-close').addEventListener('click', function(evt) {
             form.close();
         })

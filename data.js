@@ -31,7 +31,7 @@ var data = {
             }
             var data = allTextLines[i].split(this.separator + this.quote);
             if (data.length === 2) {
-                this.datas["tag" + data[0]] = data[1].slice(0, -1);
+                this.datas["tag" + data[0]] = data[1].slice(0, -1).replace(/""/g, '"');
                 this.length++;
             }
         }

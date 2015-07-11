@@ -7,6 +7,14 @@ body {
     font-size: 1.6em;
     margin: 0;
 }
+@page {
+    margin: 1rem;
+}
+.group:after {
+    content: "";
+    display: table;
+    clear: both;
+}
 #container {
     font-family: "Courier New", Courier, monospace;
     overflow-y: scroll;
@@ -17,6 +25,11 @@ body {
     right: 0px;
     z-index: -220;
 }
+#group-ele {
+    display: block;
+    text-align: center;
+}
+
 #print {
     z-index: -1;
     position: fixed;
@@ -40,34 +53,29 @@ body {
 .ele {
     display: inline-block;
     border: 1px solid grey;
-    width: 300px;
+    width: 30rem;
     overflow: auto;
-    margin: 10px;
+    margin: 1rem;
     background-color: #FFF;
-}
-input {
-    box-sizing: border-box;
-    width: 50%;
-    border: none;
+    padding: 1.6rem;
+    text-align: left;
+    page-break-inside: avoid;
 }
 .img {
-    width: 50%;
-    float: left;
+    width: 100%;
 }
 .tag {
     display: block;
-    border-bottom: 1px solid grey;
-    border-left: 1px solid grey;
-    padding: 10px;
-    font-size: 20px;
+    float: right;
+    font-size: 2.6rem;
+    font-weight: bold;
     text-align: center;
-    margin-left: 50%;
+    padding: 1rem 1rem 0;
 }
 .title {
-    border-left: 1px solid grey;
     display: block;
-    padding: 10px;
-    margin-left: 50%;
+    height: 11rem;
+    padding-top: 1rem;
 }
 #form {
     display: none;
@@ -125,4 +133,19 @@ input {
     height: 3.6rem;
     fill: currentColor;
     color: rgba(0, 0, 0, .8);
+}
+.md-button {
+    text-transform: uppercase;
+}
+.md-button {
+    height: 2.8rem;
+    padding: 1rem;
+    line-height: 1rem;
+    font-size: 1.4rem;
+    border: none;
+    background-color: transparent;
+    float: right;
+}
+.md-button:hover, .md-button:focus {
+    background-color: rgba(180, 220, 220, 0.5);
 }

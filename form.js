@@ -9,10 +9,10 @@ var form = {
         });
     },
     open: function() {
-        this.node.className = "display";
+        this.node.classList.add("display");
     },
     close: function() {
-        this.node.className = "";
+        this.node.classList.remove("display");
     },
     bind: function(index, selectTitle) {
         var ele = document.getElementsByClassName('ele')[index];

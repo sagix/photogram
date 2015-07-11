@@ -22,19 +22,21 @@
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-folder-image" />
         </svg>
     </div>
-    <div id="container"></div>
+    <div id="container">
+        <div id="group-ele"></div>
+    </div>
     <button id="print">
         <svg class="icon-64" viewBox="0 0 24 24">
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-print" />
         </svg>
     </button>
-    <form id="form">
+    <form id="form" class="group">
         <input id="form-index" type="hidden" name="index" />
         <img id="form-img" />
         <input id="form-tag" name="tag" />
-        <textarea id="form-title" name="title" placeholder="title"></textarea>
-        <button id="form-close">Fermer</button>
-        <input type="submit" text="Valider">
+        <textarea id="form-title" name="title" placeholder="title" rows="6"></textarea>
+        <input class="md-button" type="submit" text="Valider">
+        <button class="md-button" id="form-close">Fermer</button>
     </form>
 </body>
 <script src="data.js"></script>
