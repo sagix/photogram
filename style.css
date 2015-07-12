@@ -8,7 +8,7 @@ body {
     margin: 0;
 }
 @page {
-    margin: 1rem;
+    margin: 0;
 }
 .group:after {
     content: "";
@@ -28,8 +28,8 @@ body {
 #group-ele {
     display: block;
     text-align: center;
+    line-height: 0;
 }
-
 #print {
     z-index: -1;
     position: fixed;
@@ -45,6 +45,10 @@ body {
     button {
         display: none;
     }
+    #group-ele {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
     #container {
         overflow-y: visible;
         position: initial;
@@ -52,14 +56,15 @@ body {
 }
 .ele {
     display: inline-block;
-    border: 1px solid grey;
-    width: 30rem;
+    border: 1px solid silver;
+    width: 31.4rem;
     overflow: auto;
-    margin: 1rem;
+    margin: 2.8rem;
     background-color: #FFF;
-    padding: 1.6rem;
+    padding: .8rem;
     text-align: left;
     page-break-inside: avoid;
+    box-sizing: border-box;
 }
 .img {
     width: 100%;
@@ -71,11 +76,14 @@ body {
     font-weight: bold;
     text-align: center;
     padding: 1rem 1rem 0;
+    line-height: initial;
 }
 .title {
     display: block;
-    height: 11rem;
-    padding-top: 1rem;
+    height: 5.2rem;
+    overflow: hidden;
+    padding-top: .8rem;
+    line-height: initial;
 }
 #form {
     display: none;
