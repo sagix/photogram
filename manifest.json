@@ -1,6 +1,7 @@
 {
     "name": "Photogram",
-    "description": "Small application to generate stickers with photgram.",
+    "description": "__MSG_app_description__",
+    "default_locale": "en",
     "version": "0.2",
     "manifest_version": 2,
     "app": {

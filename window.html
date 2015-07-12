@@ -33,10 +33,10 @@
     <form id="form" class="group">
         <input id="form-index" type="hidden" name="index" />
         <img id="form-img" />
-        <input id="form-tag" name="tag" />
-        <textarea id="form-title" name="title" placeholder="title" rows="6"></textarea>
-        <input class="md-button" type="submit" text="Valider">
-        <button class="md-button" id="form-close">Fermer</button>
+        <input id="form-tag" name="tag" data-i18n-attr="placeholder:form_sequence_placeholder" />
+        <textarea id="form-title" name="title" data-i18n-attr="placeholder:form_action_placeholder" rows="4"></textarea>
+        <button type="submit" class="md-button" data-i18n="form_button_apply"></button>
+        <button type="button" class="md-button" id="form-close" data-i18n="form_button_close"></button>
     </form>
 </body>
 <script src="data.js"></script>
