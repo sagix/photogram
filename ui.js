@@ -57,8 +57,40 @@ var elements = {
             document.getElementById('btn-folder-image').style.display = "";
             document.getElementById('print').style.display = "none";
         }
+    },
+    setAction: function(node, value) {
+        //        node.style.fontSize = 1.6 / Math.max(1, value.length -64) + "rem";
+        node.textContent = value;
+        applyFontSize(node, .2, 2);
     }
 };
+
+function hasOverflow(node) {
+    return node.scrollHeight > node.clientHeight;
+}
+
+function applyFontSize(node, minSize, maxSize) {
+    node.style.fontSize = maxSize + 'rem';
+    if (hasOverflow(node)) {
+        node.style.fontSize = minSize + 'rem';
+        if (!hasOverflow(node)) {
+            recApplyFontSize(node, minSize, maxSize);
+        }
+    }
+}
+
+function recApplyFontSize(node, minSize, maxSize) {
+    halfSize = minSize + (maxSize - minSize) / 2;
+    console.log(halfSize);
+    node.style.fontSize = halfSize + 'rem';
+    if (hasOverflow(node)) {
+        recApplyFontSize(node, minSize, halfSize);
+    } else {
+        if (maxSize - minSize > .05) {
+            recApplyFontSize(node, halfSize, maxSize);
+        }
+    }
+}
 
 function displayForm(index, loop, title) {
     form.open()

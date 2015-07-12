@@ -36,7 +36,7 @@ var form = {
         var index = this.node.index.value;
         ele = document.getElementsByClassName('ele')[index];
         ele.getElementsByClassName('tag')[0].textContent = this.node.tag.value;
-        ele.getElementsByClassName('title')[0].textContent = this.node.title.value;
+        elements.setAction(ele.getElementsByClassName('title')[0], this.node.title.value);
         if (this.looping) {
             this.bind(parseInt(index) + 1);
         } else {

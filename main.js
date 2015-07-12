@@ -46,7 +46,7 @@ function bindData() {
             function(ele, index, array) {
                 var title = data.get(ele.dataset.tag);
                 if (title !== undefined) {
-                    ele.getElementsByClassName('title')[0].textContent = title;
+                    elements.setAction(ele.getElementsByClassName('title')[0], title);
                 }
                 if (index === 0) {
                     displayForm(0, true);

@@ -58,13 +58,18 @@ body {
     display: inline-block;
     border: 1px solid silver;
     width: 31.4rem;
+    margin: .8rem;
     overflow: auto;
-    margin: 2.8rem;
     background-color: #FFF;
     padding: .8rem;
     text-align: left;
     page-break-inside: avoid;
     box-sizing: border-box;
+}
+@media print {
+    .ele {
+        margin: 2.8rem;
+    }
 }
 .img {
     width: 100%;
