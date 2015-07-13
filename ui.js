@@ -30,11 +30,17 @@ var elements = {
             var intA = parseInt(a.sequence),
                 intB = parseInt(b.sequence);
             if (intA < intB) {
-                return -1
+                return -1;
             } else if (intA > intB) {
                 return 1;
             } else {
-                return 0;
+                if (a.sequence < b.sequence) {
+                    return -1;
+                } else if (a.sequence > b.sequence) {
+                    return 1;
+                } else {
+                    return 0;
+                }
             }
         });
     },
