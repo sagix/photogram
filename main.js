@@ -27,9 +27,10 @@ function loadDirEntry(chosenEntry) {
                         );
                     } else if (file.name === "data.csv") {
                         data.load(file, bindData);
-                        console.log(file.type);
                     }
                     if (index === array.length - 1) {
+                        elements.sort();
+                        elements.addToContainer();
                         bindData();
                         elements.update();
                         displayForm(0, true);

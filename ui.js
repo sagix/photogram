@@ -1,4 +1,5 @@
 var elements = {
+    elementList: Array(),
     index: 0,
     init: function() {
         this.container = document.getElementById('group-ele')
@@ -18,7 +19,31 @@ var elements = {
             loadDirEntry(entry);
         });
     },
-    add: function(url, tagText) {
+    add: function(url, sequence) {
+        this.elementList.push({
+            sequence: sequence,
+            url: url
+        })
+    },
+    sort: function() {
+        this.elementList.sort(function(a, b) {
+            var intA = parseInt(a.sequence),
+                intB = parseInt(b.sequence);
+            if (intA < intB) {
+                return -1
+            } else if (intA > intB) {
+                return 1;
+            } else {
+                return 0;
+            }
+        });
+    },
+    addToContainer: function() {
+        for (var ele of this.elementList) {
+            this.addNode(ele.url, ele.sequence);
+        }
+    },
+    addNode: function(url, tagText) {
         var ele = document.createElement("div");
         ele.className = "ele"
         ele.dataset.index = this.index;
