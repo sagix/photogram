@@ -8,8 +8,8 @@ var data = {
         this.quote = quote;
     },
 
-    get: function(tag) {
-        return this.datas["tag" + tag];
+    get: function(id) {
+        return this.datas["id" + id];
     },
 
     load: function(file, next) {
@@ -26,12 +26,12 @@ var data = {
         for (var i = 0; i < allTextLines.length; i++) {
             var data = allTextLines[i].split(this.separator);
             if (data.length === 2) {
-                this.datas["tag" + data[0]] = data[1];
+                this.datas["id" + data[0]] = data[1];
                 this.length++;
             }
             var data = allTextLines[i].split(this.separator + this.quote);
             if (data.length === 2) {
-                this.datas["tag" + data[0]] = data[1].slice(0, -1).replace(/""/g, '"');
+                this.datas["id" + data[0]] = data[1].slice(0, -1).replace(/""/g, '"');
                 this.length++;
             }
         }

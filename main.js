@@ -1,6 +1,6 @@
 window.addEventListener('load', function() {
     form.init();
-    elements.init();
+    gui.init();
     data.init(',', '"');
 });
 
@@ -30,9 +30,9 @@ function loadDirEntry(chosenEntry) {
                     }
                     if (index === array.length - 1) {
                         elements.sort();
-                        elements.addToContainer();
+                        gui.addToContainer(elements.elementList);
                         bindData();
-                        elements.update();
+                        gui.update();
                         displayForm(0, true);
                     }
                 });
@@ -45,9 +45,9 @@ function bindData() {
     if (data.length > 0) {
         Array.prototype.forEach.call(document.getElementsByClassName('ele'),
             function(ele, index, array) {
-                var title = data.get(ele.dataset.tag);
-                if (title !== undefined) {
-                    elements.setAction(ele.getElementsByClassName('title')[0], title);
+                var action = data.get(ele.dataset.id);
+                if (action !== undefined) {
+                    elements.setAction(ele.dataset.id, ele.getElementsByClassName('action')[0], action);
                 }
                 if (index === 0) {
                     displayForm(0, true);

@@ -14,19 +14,19 @@ var form = {
     close: function() {
         this.node.classList.remove("display");
     },
-    bind: function(index, selectTitle) {
+    bind: function(index, selectAction) {
         var ele = document.getElementsByClassName('ele')[index];
         if (ele !== undefined) {
             document.getElementById('form-index').value = index;
             document.getElementById('form-img').src = ele.getElementsByClassName('img')[0].src;
-            var tag = document.getElementById('form-tag')
-            tag.value = ele.getElementsByClassName('tag')[0].textContent;
-            var title = document.getElementById('form-title');
-            title.value = ele.getElementsByClassName('title')[0].textContent;
-            if (selectTitle) {
-                title.select();
+            var sequence = document.getElementById('form-sequence')
+            sequence.value = ele.getElementsByClassName('sequence')[0].textContent;
+            var action = document.getElementById('form-action');
+            action.value = ele.getElementsByClassName('action')[0].textContent;
+            if (selectAction) {
+                action.select();
             } else {
-                tag.select();
+                sequence.select();
             }
         } else {
             form.close();
@@ -35,8 +35,9 @@ var form = {
     submit: function() {
         var index = this.node.index.value;
         ele = document.getElementsByClassName('ele')[index];
-        ele.getElementsByClassName('tag')[0].textContent = this.node.tag.value;
-        elements.setAction(ele.getElementsByClassName('title')[0], this.node.title.value);
+        ele.getElementsByClassName('sequence')[0].textContent = this.node.sequence.value;
+        elements.update(ele.dataset.id, this.node.sequence.value, this.node.action.value);
+        elements.setAction(ele.dataset.id, ele.getElementsByClassName('action')[0], this.node.action.value);
         if (this.looping) {
             this.bind(parseInt(index) + 1);
         } else {
