@@ -14,8 +14,33 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+function saveLastEntry(entry) {
+    var newItem = {
+        name: entry.name,
+        id: chrome.fileSystem.retainEntry(entry)
+    };
+    chrome.storage.local.get('lastDir', function(items) {
+        if (items.lastDir == undefined) {
+            items.lastDir = new Array();
+        }
+        var inArray = false;
+
+        for (var dir of items.lastDir) {
+            if (dir.name === newItem.name) {
+                inArray = true;
+                break;
+            }
+        }
+        if (!inArray) {
+            items.lastDir.push(newItem);
+        }
+        chrome.storage.local.set(items);
+    });
+}
+
 function loadDirEntry(chosenEntry) {
     if (chosenEntry !== undefined && chosenEntry.isDirectory) {
+        saveLastEntry(chosenEntry);
         var dirReader = chosenEntry.createReader();
         dirReader.readEntries(function(results) {
             results.forEach(function(item, index, array) {

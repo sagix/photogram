@@ -12,7 +12,9 @@ var gui = {
             elements.save();
         });
         document.getElementById('btn-folder-image').addEventListener('click', elements.chooseDir);
-        gui.update();
+        this.listLastDir = document.getElementById('list-last-dir');
+        this.loadLastDir();
+        this.update();
     },
     update: function() {
         if (this.index > 0) {
@@ -59,33 +61,33 @@ var gui = {
         });
         this.index++;
     },
+
+    loadLastDir: function() {
+        chrome.storage.local.get('lastDir', function(items) {
+            if (items.lastDir === undefined) {
+                return;
+            }
+            for (var dir of items.lastDir) {
+                var listDir = document.createElement('li');
+                listDir.textContent = dir.name;
+                listDir.dataset.name = dir.name;
+                listDir.addEventListener('click', function(event) {
+                    for (var dir of items.lastDir) {
+                        if (dir.name === event.currentTarget.dataset.name) {
+                            chrome.fileSystem.restoreEntry(dir.id, function(entry) {
+                                loadDirEntry(entry);
+                            });
+                        }
+                    }
+                });
+                gui.listLastDir.appendChild(listDir);
+            }
+        });
+    }
 };
 
 function hasOverflow(node) {
     return node.scrollHeight > node.clientHeight;
-}
-
-function applyFontSize(node, minSize, maxSize) {
-    node.style.fontSize = maxSize + 'rem';
-    if (hasOverflow(node)) {
-        node.style.fontSize = minSize + 'rem';
-        if (!hasOverflow(node)) {
-            recApplyFontSize(node, minSize, maxSize);
-        }
-    }
-}
-
-function recApplyFontSize(node, minSize, maxSize) {
-    halfSize = minSize + (maxSize - minSize) / 2;
-    console.log(halfSize);
-    node.style.fontSize = halfSize + 'rem';
-    if (hasOverflow(node)) {
-        recApplyFontSize(node, minSize, halfSize);
-    } else {
-        if (maxSize - minSize > .05) {
-            recApplyFontSize(node, halfSize, maxSize);
-        }
-    }
 }
 
 function displayForm(index, loop, action) {

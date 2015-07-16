@@ -10,9 +10,11 @@
             "scripts": ["background.js"]
         }
     },
-    "permissions": [{
-        "fileSystem": ["write", "retainEntries", "directory"]
-    }],
+    "permissions": [
+        "storage", {
+            "fileSystem": [ "write", "retainEntries", "directory"]
+        }
+    ],
     "icons": {
         "128": "icon.png"
     }
