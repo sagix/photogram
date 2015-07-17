@@ -38,9 +38,10 @@ function saveLastEntry(entry) {
     });
 }
 
-function loadDirEntry(chosenEntry) {
+function loadDirEntry(chosenEntry, withSave) {
     if (chosenEntry !== undefined && chosenEntry.isDirectory) {
         saveLastEntry(chosenEntry);
+        elements.entry = chosenEntry;
         var dirReader = chosenEntry.createReader();
         dirReader.readEntries(function(results) {
             results.forEach(function(item, index, array) {
@@ -50,13 +51,20 @@ function loadDirEntry(chosenEntry) {
                             URL.createObjectURL(file),
                             file.name.replace(/\.[^/.]+$/, "")
                         );
-                    } else if (file.name === "data.csv") {
+                    } else if (!withSave && file.name === "data.csv") {
                         data.load(file, bindData);
+                    } else if (withSave && file.name === "save.json") {
+                        elements.load(file);
                     }
                     if (index === array.length - 1) {
                         elements.sort();
+                        elements.bind();
                         gui.addToContainer(elements.elementList);
-                        bindData();
+                        if (withSave) {
+                            bindElement();
+                        } else {
+                            bindData();
+                        }
                         gui.update();
                         displayForm(0, true);
                     }
@@ -64,6 +72,21 @@ function loadDirEntry(chosenEntry) {
             });
         }, errorHandler);
     }
+}
+
+function bindElement() {
+    Array.prototype.forEach.call(document.getElementsByClassName('ele'),
+        function(ele, index, array) {
+            for (var element of elements.elementList) {
+                if (element.id === ele.dataset.id) {
+                    var action = element.action;
+                    if (action !== undefined) {
+                        elements.setAction(element.id, ele.getElementsByClassName('action')[0], action);
+                    }
+                }
+            }
+        }
+    );
 }
 
 function bindData() {

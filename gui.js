@@ -20,9 +20,11 @@ var gui = {
         if (this.index > 0) {
             document.getElementById('btn-folder-image').style.display = "none";
             document.getElementById('menu').style.display = "";
+            document.getElementById('list-last-dir').style.display = "none";
         } else {
             document.getElementById('btn-folder-image').style.display = "";
             document.getElementById('menu').style.display = "none";
+            document.getElementById('list-last-dir').style.display = "";
         }
     },
     addToContainer: function(elementList) {
@@ -75,7 +77,7 @@ var gui = {
                     for (var dir of items.lastDir) {
                         if (dir.name === event.currentTarget.dataset.name) {
                             chrome.fileSystem.restoreEntry(dir.id, function(entry) {
-                                loadDirEntry(entry);
+                                loadDirEntry(entry, true);
                             });
                         }
                     }

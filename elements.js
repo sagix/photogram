@@ -18,6 +18,7 @@ var elements = {
         })
     },
     sort: function() {
+        this.sorted = true;
         this.elementList.sort(function(a, b) {
             var intA = parseInt(a.sequence),
                 intB = parseInt(b.sequence);
@@ -63,6 +64,13 @@ var elements = {
                 });
             })
     },
+    load: function(file) {
+        var fileReader = new FileReader();
+        fileReader.onload = function(f) {
+            elements.bind(JSON.parse(fileReader.result));
+        }
+        fileReader.readAsText(file);
+    },
     setAction: function(id, node, value) {
         for (var element of this.elementList) {
             if (element.id === id) {
@@ -72,6 +80,28 @@ var elements = {
         warnForDuplicate(node, value);
         node.textContent = value;
         applyFontSize(node, .2, 2);
+    },
+    bind: function(save) {
+        if (this.sorted === true) {
+            if (save === undefined) {
+                save = this.tmpSave;
+            }
+            if (save !== undefined) {
+                for (var ele of this.elementList) {
+                    for (var s of save) {
+                        if (ele.id === s.id) {
+                            ele.sequence = s.sequence;
+                            ele.action = s.action;
+                            save.splice(save.indexOf(s), 1);
+                            break;
+                        }
+                    }
+                }
+                bindElement();
+            }
+        } else {
+            this.tmpSave = save;
+        }
     }
 };
 
