@@ -1,21 +1,21 @@
-function applyFontSize(node, minSize, maxSize) {
+function applyFontSize(parent, node, minSize, maxSize) {
     node.style.fontSize = maxSize + 'rem';
-    if (hasOverflow(node)) {
+    if (hasOverflow(parent)) {
         node.style.fontSize = minSize + 'rem';
-        if (!hasOverflow(node)) {
-            recApplyFontSize(node, minSize, maxSize);
+        if (!hasOverflow(parent)) {
+            recApplyFontSize(parent, node, minSize, maxSize);
         }
     }
 }
 
-function recApplyFontSize(node, minSize, maxSize) {
+function recApplyFontSize(parent, node, minSize, maxSize) {
     var halfSize = minSize + (maxSize - minSize) / 2;
     node.style.fontSize = halfSize + 'rem';
-    if (hasOverflow(node)) {
-        recApplyFontSize(node, minSize, halfSize);
+    if (hasOverflow(parent)) {
+        recApplyFontSize(parent, node, minSize, halfSize);
     } else {
         if (maxSize - minSize > .05) {
-            recApplyFontSize(node, halfSize, maxSize);
+            recApplyFontSize(parent, node, halfSize, maxSize);
         }
     }
 }

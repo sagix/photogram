@@ -79,7 +79,7 @@ var elements = {
         }
         warnForDuplicate(node, value);
         node.textContent = value;
-        applyFontSize(node, .2, 2);
+        applyFontSize(node.parentNode, node, .2, 2);
     },
     bind: function(save) {
         if (this.sorted === true) {
@@ -107,8 +107,8 @@ var elements = {
 
 function warnForDuplicate(node, value) {
     if (value.length > 0 && (value.slice(0, value.length / 2) === value.slice(value.length / 2, value.length) || value.slice(0, value.length / 3) === value.slice(value.length / 3, 2 * value.length / 3))) {
-        node.parentNode.style.backgroundColor = 'red';
+        node.parentNode.parentNode.style.backgroundColor = 'red';
     } else {
-        node.parentNode.style.backgroundColor = '';
+        node.parentNode.parentNode.style.backgroundColor = '';
     }
 }

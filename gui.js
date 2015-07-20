@@ -46,9 +46,12 @@ var gui = {
         var img = document.createElement('img');
         img.className = "img"
         img.src = url;
+        var legend = document.createElement('div');
+        legend.className = "legend";
         ele.appendChild(img);
-        ele.appendChild(sequence);
-        ele.appendChild(action);
+        ele.appendChild(legend);
+        legend.appendChild(sequence);
+        legend.appendChild(action);
         this.container.appendChild(ele);
 
         ele.addEventListener('click', function(evt) {
