@@ -64,9 +64,9 @@ function loadDirEntry(chosenEntry, withSave) {
                             bindElement();
                         } else {
                             bindData();
+                            displayForm(0, true);
                         }
                         gui.update();
-                        displayForm(0, true);
                     }
                 });
             });

@@ -61,7 +61,7 @@ var gui = {
             }
         });
         action.addEventListener('click', function(evt) {
-            displayForm(evt.currentTarget.parentElement.dataset.index, false, true);
+            displayForm(evt.currentTarget.parentElement.parentElement.dataset.index, false, true);
             evt.preventDefault();
         });
         this.index++;
