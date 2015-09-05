@@ -60,6 +60,15 @@ var elements = {
                     })], {
                         type: 'text/plain'
                     });
+                    var truncated = false;
+                    fileWriter.onwriteend = function(e) {
+                        if (!truncated) {
+                            truncated = true;
+                            this.truncate(this.position);
+                            return;
+                        }
+                        console.log('Write completed.');
+                    };
                     fileWriter.write(blob);
                 });
             })

@@ -43,5 +43,6 @@ var form = {
         } else {
             this.close();
         }
+        elements.save();
     }
 }

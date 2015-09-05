@@ -8,9 +8,6 @@ var gui = {
         document.getElementById('print').addEventListener('click', function() {
             window.print();
         });
-        document.getElementById('save').addEventListener('click', function() {
-            elements.save();
-        });
         document.getElementById('btn-folder-image').addEventListener('click', elements.chooseDir);
         this.listLastDir = document.getElementById('list-last-dir');
         this.loadLastDir();
