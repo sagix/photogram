@@ -31,10 +31,50 @@
         <h3>
 <a id="setup-directory" class="anchor" href="#setup-directory" aria-hidden="true"><span class="octicon octicon-link"></span></a>Setup directory</h3>
 
-<p>You must put all your images in the same directory.
-And add a CSV named <code>data.csv</code> in this directory.
-With <em>comma</em> as field delimiter.
-And <em>double quotes</em> as text delimiter</p>
+<p>You must put all your images in the same directory.</p>
+
+<p>And add a CSV named <code>data.csv</code> in this directory.</p>
+
+<p>With <strong>comma</strong> as field delimiter.</p>
+
+<p>And <strong>double quotes</strong> as text delimiter</p>
+
+<p><em>empty lines or with more then two columns are ignored</em></p>
+
+<h3>
+<a id="example" class="anchor" href="#example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h3>
+
+<p>in a file sheet:</p>
+
+<table>
+<thead>
+<tr>
+<th>image name</th>
+<th>legend of photogram</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>action for scene one</td>
+</tr>
+<tr>
+<td>2</td>
+<td>two two</td>
+</tr>
+<tr>
+<td>3.1</td>
+<td>start of "traveling"</td>
+</tr>
+</tbody>
+</table>
+
+<p>in the CSV exported</p>
+
+<pre><code>1,action for scene one
+2,two two
+3.1,"start of ""traveling"""
+</code></pre>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/sagix">sagix</a></p>
