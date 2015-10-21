@@ -1,0 +1,1 @@
+{"name":"Photogram","tagline":"Chrome App to generate thumbnails","body":"### Setup directory\r\n\r\nYou must put all your images in the same directory.\r\nAnd add a CSV named `data.csv` in this directory.\r\nWith *comma* as field delimiter.\r\nAnd *double quotes* as text delimiter","google":"","note":"Don't delete this file! It's used internally to help with page regeneration."}
