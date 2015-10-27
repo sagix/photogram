@@ -101,6 +101,7 @@ var elements = {
                         if (ele.id === s.id) {
                             ele.sequence = s.sequence;
                             ele.action = s.action;
+                            ele.color = s.color === undefined ? 0 : s.color;
                             save.splice(save.indexOf(s), 1);
                             break;
                         }

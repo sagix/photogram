@@ -43,35 +43,67 @@ function loadDirEntry(chosenEntry, withSave) {
         saveLastEntry(chosenEntry);
         elements.entry = chosenEntry;
         var dirReader = chosenEntry.createReader();
-        dirReader.readEntries(function(results) {
-            results.forEach(function(item, index, array) {
-                item.file(function(file) {
-                    if (file.type.startsWith("image")) {
-                        elements.add(
-                            URL.createObjectURL(file),
-                            file.name.replace(/\.[^/.]+$/, "")
-                        );
-                    } else if (!withSave && file.name === "data.csv") {
-                        data.load(file, bindData);
-                    } else if (withSave && file.name === "save.json") {
-                        elements.load(file);
-                    }
-                    if (index === array.length - 1) {
-                        elements.sort();
-                        elements.bind();
-                        gui.addToContainer(elements.elementList);
-                        if (withSave) {
-                            bindElement();
-                        } else {
-                            bindData();
-                            displayForm(0, true);
-                        }
-                        gui.update();
-                    }
-                });
-            });
-        }, errorHandler);
+
+        var entries = [];
+
+        // Keep calling readEntries() until no more results are returned.
+        var readEntries = function() {
+            dirReader.readEntries(function(results) {
+                if (!results.length) {
+                    listResults(entries, withSave);
+                } else {
+                    entries = entries.concat(toArray(results));
+                    readEntries();
+                }
+            }, errorHandler);
+        };
+
+        // Start reading the directory.
+        readEntries();
     }
+}
+
+function listResults(entries, withSave) {
+    entries.forEach(function(item, index, array) {
+
+        item.file(function(file) {
+            if (file.type.startsWith("image")) {
+                elements.add(
+                    URL.createObjectURL(file),
+                    file.name.replace(/\.[^/.]+$/, "")
+                );
+            } else if (!withSave && file.name === "data.csv") {
+                console.log("data");
+                data.load(file, bindData);
+            } else if (withSave && file.name === "save.json") {
+                elements.load(file);
+            }
+            if (index === array.length - 1) {
+                handleEnd(withSave);
+            }
+        }, function(e) {
+            if (index === array.length - 1) {
+                handleEnd(withSave);
+            }
+        });
+    });
+}
+
+function handleEnd(withSave) {
+    elements.sort();
+    elements.bind();
+    gui.addToContainer(elements.elementList);
+    if (withSave) {
+        bindElement();
+    } else {
+        bindData();
+        displayForm(0, true);
+    }
+    gui.update();
+}
+
+function toArray(list) {
+    return Array.prototype.slice.call(list || [], 0);
 }
 
 function bindElement() {

@@ -26,10 +26,10 @@ var gui = {
     },
     addToContainer: function(elementList) {
         for (var ele of elementList) {
-            this.addNode(ele.url, ele.sequence);
+            this.addNode(ele.url, ele.sequence, ele.color === undefined ? 0 : ele.color);
         }
     },
-    addNode: function(url, sequenceText) {
+    addNode: function(url, sequenceText, color) {
         var ele = document.createElement("div");
         ele.className = "ele"
         ele.dataset.index = this.index;
@@ -39,7 +39,7 @@ var gui = {
         sequence.textContent = sequenceText;
         var action = document.createElement('span');
         action.type = "text"
-        action.className = "action"
+        action.className = "action bg-action-" + color;
         var img = document.createElement('img');
         img.className = "img"
         img.src = url;
@@ -52,7 +52,8 @@ var gui = {
         this.container.appendChild(ele);
 
         ele.addEventListener('click', function(evt) {
-            if (evt.srcElement.className !== "action") {
+            if (!evt.srcElement.classList.contains("action")
+                && !evt.srcElement.classList.contains("sequence")) {
                 displayForm(evt.currentTarget.dataset.index, false);
                 evt.preventDefault();
             }
@@ -60,6 +61,9 @@ var gui = {
         action.addEventListener('click', function(evt) {
             displayForm(evt.currentTarget.parentElement.parentElement.dataset.index, false, true);
             evt.preventDefault();
+        });
+        sequence.addEventListener('click', function(evt) {
+            evt.currentTarget.classList.toggle('sequence-night');
         });
         this.index++;
     },
