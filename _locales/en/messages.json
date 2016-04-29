@@ -16,5 +16,8 @@
     },
     "form_button_close": {
         "message": "Close"
+    },
+    "open_directory": {
+        "message": "Open directory"
     }
 }
