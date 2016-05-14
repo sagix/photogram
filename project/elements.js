@@ -1,14 +1,6 @@
 var elements = {
     elementList: Array(),
     index: 0,
-    chooseDir: function() {
-        chrome.fileSystem.chooseEntry({
-            type: "openDirectory"
-        }, function(entry, fileEntries) {
-            elements.entry = entry;
-            loadDirEntry(entry);
-        });
-    },
     add: function(url, sequence) {
         this.elementList.push({
             id: sequence,

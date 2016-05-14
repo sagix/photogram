@@ -8,21 +8,6 @@ var gui = {
         document.getElementById('print').addEventListener('click', function() {
             window.print();
         });
-        document.getElementById('btn-folder-image').addEventListener('click', elements.chooseDir);
-        this.listLastDir = document.getElementById('list-last-dir');
-        this.loadLastDir();
-        this.update();
-    },
-    update: function() {
-        if (this.index > 0) {
-            document.getElementById('btn-folder-image').style.display = "none";
-            document.getElementById('menu').style.display = "";
-            document.getElementById('list-last-dir').style.display = "none";
-        } else {
-            document.getElementById('btn-folder-image').style.display = "";
-            document.getElementById('menu').style.display = "none";
-            document.getElementById('list-last-dir').style.display = "";
-        }
     },
     addToContainer: function(elementList) {
         for (var ele of elementList) {
@@ -67,29 +52,6 @@ var gui = {
         });
         this.index++;
     },
-
-    loadLastDir: function() {
-        chrome.storage.local.get('lastDir', function(items) {
-            if (items.lastDir === undefined) {
-                return;
-            }
-            for (var dir of items.lastDir) {
-                var listDir = document.createElement('li');
-                listDir.textContent = dir.name;
-                listDir.dataset.name = dir.name;
-                listDir.addEventListener('click', function(event) {
-                    for (var dir of items.lastDir) {
-                        if (dir.name === event.currentTarget.dataset.name) {
-                            chrome.fileSystem.restoreEntry(dir.id, function(entry) {
-                                loadDirEntry(entry, true);
-                            });
-                        }
-                    }
-                });
-                gui.listLastDir.appendChild(listDir);
-            }
-        });
-    }
 };
 
 function hasOverflow(node) {

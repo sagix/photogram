@@ -14,7 +14,7 @@
     "form_button_close": {
         "message": "Fermer"
     },
-    "open_directory": {
-        "message": "Ouvrir un dossier"
+    "new_project": {
+        "message": "Nouveau projet"
     }
 }

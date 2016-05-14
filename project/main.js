@@ -2,45 +2,14 @@ window.addEventListener('load', function() {
     form.init();
     gui.init();
     data.init(',', '"');
+
+    chrome.runtime.getBackgroundPage(function(b) {
+        loadDirEntry(b.entry, b.fromHistory)
+    })
+
 });
-
-document.addEventListener('DOMContentLoaded', function() {
-    Array.prototype.forEach.call(document.querySelectorAll('[data-i18n]'), function(el) {
-        el.textContent = chrome.i18n.getMessage(el.getAttribute('data-i18n'));
-    });
-    Array.prototype.forEach.call(document.querySelectorAll('[data-i18n-attr]'), function(el) {
-        var data = el.getAttribute('data-i18n-attr').split(':');
-        el.setAttribute(data[0], chrome.i18n.getMessage(data[1]));
-    });
-});
-
-function saveLastEntry(entry) {
-    var newItem = {
-        name: entry.name,
-        id: chrome.fileSystem.retainEntry(entry)
-    };
-    chrome.storage.local.get('lastDir', function(items) {
-        if (items.lastDir == undefined) {
-            items.lastDir = new Array();
-        }
-        var inArray = false;
-
-        for (var dir of items.lastDir) {
-            if (dir.name === newItem.name) {
-                inArray = true;
-                break;
-            }
-        }
-        if (!inArray) {
-            items.lastDir.push(newItem);
-        }
-        chrome.storage.local.set(items);
-    });
-}
-
 function loadDirEntry(chosenEntry, withSave) {
     if (chosenEntry !== undefined && chosenEntry.isDirectory) {
-        saveLastEntry(chosenEntry);
         elements.entry = chosenEntry;
         var dirReader = chosenEntry.createReader();
 
@@ -99,7 +68,6 @@ function handleEnd(withSave) {
         bindData();
         displayForm(0, true);
     }
-    gui.update();
 }
 
 function toArray(list) {
