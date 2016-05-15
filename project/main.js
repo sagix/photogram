@@ -1,7 +1,7 @@
 window.addEventListener('load', function() {
-    form.init();
     gui.init();
     data.init(',', '"');
+    tmp.init();
 
     chrome.runtime.getBackgroundPage(function(b) {
         loadDirEntry(b.entry, b.fromHistory)

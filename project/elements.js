@@ -9,6 +9,13 @@ var elements = {
             action: ""
         })
     },
+    get: function(id) {
+        for (var element of this.elementList) {
+            if (element.id === id) {
+                return element;
+            }
+        }
+    },
     sort: function() {
         this.sorted = true;
         this.elementList.sort(function(a, b) {

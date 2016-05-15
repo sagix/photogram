@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Default</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../res/style.css">
+    <style>
+        #form {
+            display: none;
+            max-width: 60%;
+            margin: auto;
+            background-color: rgba(255, 255, 255, .98);
+            padding: 1.6rem;
+            z-index: 1000;
+        }
+
+        #form::before {
+            content: "";
+            background-color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+            z-index: -1;
+        }
+
+        #form.display {
+            display: block;
+        }
+
+        #form-img {
+            width: 100%;
+        }
+
+        #form-sequence,
+        #form-action {
+            width: 100%;
+            background-color: #EEE;
+            border: none;
+            margin-bottom: .8rem;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 2.4rem;
+        }
+    </style>
+    <script src="../publisher-log.js"></script>
+    <script src="form.js"></script>
+</head>
+
+<body>
+    <form id="form" class="group">
+        <input id="form-index" type="hidden" name="index" />
+        <img id="form-img" />
+        <input id="form-sequence" name="sequence" data-i18n-attr="placeholder:form_sequence_placeholder" />
+        <textarea id="form-action" name="action" data-i18n-attr="placeholder:form_action_placeholder" rows="4"></textarea>
+        <button type="submit" class="md-button" data-i18n="form_button_apply">V</button>
+        <button type="button" class="md-button" id="form-close" data-i18n="form_button_close">F</button>
+    </form>
+</body>
+
+<script>
+    form.init();
+    form._open();
+    form._bind({
+        "index": "55",
+        "src": "http://images-cdn.moviepilot.com/images/c_fill,h_800,w_1200/t_mp_quality/nzrmxlmnzpyuqwddwms3/can-any-movie-match-the-success-of-star-wars-the-force-awakens-768644.jpg",
+        "sequence": "55B",
+        "action": "2 femmes hurlent la tête sous l'eau. Le sbire veut des informations"
+    });
+</script>
+
+</html>
