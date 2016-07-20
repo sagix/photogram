@@ -1,0 +1,19 @@
+{
+    "name": "Default",
+    "elements": [{
+        "id": "legacy",
+        "name": "Legacy",
+        "file": "/elements/legacy.html",
+        "screenshot": "/screenshots/legacy.png"
+    }, {
+        "id": "small",
+        "name": "Small",
+        "file": "/elements/small.html",
+        "screenshot": "/screenshots/small.png"
+    }, {
+        "id": "large",
+        "name": "Large",
+        "file": "/elements/large.html",
+        "screenshot": "/screenshots/large.png"
+    }]
+}

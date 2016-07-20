@@ -1,13 +1,12 @@
 var tmp = {
 
-    init: function() {
-        var templateName = 'default';
+    init: function(templateName, element) {
 
         this._appendScript('/templates/' + templateName + '/binder.js');
         this._appendScript('/templates/' + templateName + '/form.js');
 
         var xhr1 = new XMLHttpRequest();
-        xhr1.open('GET', '/templates/' + templateName + '/main.html', true);
+        xhr1.open('GET', '/templates/' + templateName + element, true);
         xhr1.responseType = 'document';
         xhr1.onreadystatechange = function() {
             if (xhr1.readyState == 4 && xhr1.status == 200) {

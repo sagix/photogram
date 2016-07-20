@@ -1,10 +1,11 @@
 window.addEventListener('load', function() {
     gui.init();
     data.init(',', '"');
-    tmp.init();
 
     chrome.runtime.getBackgroundPage(function(b) {
         loadDirEntry(b.entry, b.fromHistory)
+
+        tmp.init(b.template, b.element);
     })
 
 });
