@@ -14,26 +14,20 @@ var csvReader = {
     },
 
     _parse: function(data, next) {
-        var result = [];
-        var allTextLines = data.split(/\r\n|\n/);
-
-        for (var i = 0; i < allTextLines.length; i++) {
-            var data = allTextLines[i].split(this.separator);
-            if (data.length === 2) {
-                result.push(this._createData(data[0], data[1]));
+        Papa.parse(data, {
+            delimiter: this.separator,
+            skipEmptyLines: true,
+            complete: function(parsed) {
+                var result = [];
+                for (r of parsed.data) {
+                    result.push({
+                        id: r[0],
+                        sequence: r[0],
+                        action: r[1],
+                    })
+                }
+                next(result);
             }
-            var data = allTextLines[i].split(this.separator + this.quote);
-            if (data.length === 2) {
-                result.push(this._createData(data[0], data[1].slice(0, -1).replace(/""/g, '"')));
-            }
-        }
-        next(result);
-    },
-    _createData: function(id, action){
-        return {
-            id : id,
-            sequence : id,
-            action: action
-        }
+        });
     }
 };
