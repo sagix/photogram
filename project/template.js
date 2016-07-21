@@ -1,6 +1,7 @@
 var tmp = {
 
     init: function(templateName, element) {
+        this.container = document.getElementById('group-ele')
 
         this._appendScript('/templates/' + templateName + '/binder.js');
         this._appendScript('/templates/' + templateName + '/form.js');
@@ -46,7 +47,14 @@ var tmp = {
         form.init();
     },
 
-    bind: function(value) {
-        return binder.bind(value, document.importNode(tmp.node, true));
+    addToContainer: function(elementList) {
+        for (var ele of elementList) {
+            this._addNode(ele);
+        }
+    },
+    _addNode: function(element) {
+        var node = document.importNode(tmp.node, true);
+        this.container.appendChild(node);
+        binder.bind(element, node)
     }
 };

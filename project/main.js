@@ -1,17 +1,22 @@
-window.addEventListener('load', function() {
-    gui.init();
-    data.init(',', '"');
+var onLoad = function() {
+    document.getElementById('print').addEventListener('click', function() {
+        window.print();
+    });
+    jsonWriter.init("save.json");
+    csvReader.init(',', '"');
 
     chrome.runtime.getBackgroundPage(function(b) {
-        loadDirEntry(b.entry, b.fromHistory)
-
         tmp.init(b.template, b.element);
+        loadDirEntry(b.entry, b.fromHistory)
     })
 
-});
+};
+
+window.addEventListener('load', onLoad);
+
 function loadDirEntry(chosenEntry, withSave) {
     if (chosenEntry !== undefined && chosenEntry.isDirectory) {
-        elements.entry = chosenEntry;
+        jsonWriter.entry = chosenEntry;
         var dirReader = chosenEntry.createReader();
 
         var entries = [];
@@ -34,6 +39,10 @@ function loadDirEntry(chosenEntry, withSave) {
 }
 
 function listResults(entries, withSave) {
+    var dataArgs = {
+        load: withSave ? jsonReader.load : csvReader.load,
+    }
+
     entries.forEach(function(item, index, array) {
 
         item.file(function(file) {
@@ -43,66 +52,33 @@ function listResults(entries, withSave) {
                     file.name.replace(/\.[^/.]+$/, "")
                 );
             } else if (!withSave && file.name === "data.csv") {
-                console.log("data");
-                data.load(file, bindData);
+                dataArgs.file = file;
             } else if (withSave && file.name === "save.json") {
-                elements.load(file);
+                dataArgs.file = file;
             }
             if (index === array.length - 1) {
-                handleEnd(withSave);
+                handleEnd(dataArgs);
             }
         }, function(e) {
             if (index === array.length - 1) {
-                handleEnd(withSave);
+                handleEnd(dataArgs);
             }
+            errorHandler(e);
         });
     });
 }
 
-function handleEnd(withSave) {
+function handleEnd(dataArgs) {
     elements.sort();
-    elements.bind();
-    gui.addToContainer(elements.elementList);
-    if (withSave) {
-        bindElement();
-    } else {
-        bindData();
-        displayForm(0, true);
-    }
+    dataArgs.load(dataArgs.file, function(result) {
+        elements.merge(result);
+        tmp.addToContainer(elements.elementList);
+    })
+
 }
 
 function toArray(list) {
     return Array.prototype.slice.call(list || [], 0);
-}
-
-function bindElement() {
-    Array.prototype.forEach.call(document.getElementsByClassName('ele'),
-        function(ele, index, array) {
-            for (var element of elements.elementList) {
-                if (element.id === ele.dataset.id) {
-                    var action = element.action;
-                    if (action !== undefined) {
-                        elements.setAction(element.id, ele.getElementsByClassName('action')[0], action);
-                    }
-                }
-            }
-        }
-    );
-}
-
-function bindData() {
-    if (data.length > 0) {
-        Array.prototype.forEach.call(document.getElementsByClassName('ele'),
-            function(ele, index, array) {
-                var action = data.get(ele.dataset.id);
-                if (action !== undefined) {
-                    elements.setAction(ele.dataset.id, ele.getElementsByClassName('action')[0], action);
-                }
-                if (index === 0) {
-                    displayForm(0, true);
-                }
-            });
-    }
 }
 
 function errorHandler(e) {

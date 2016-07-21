@@ -1,7 +1,6 @@
 var form = {
     node: null,
     img: null,
-    looping: false,
     init: function() {
         this.node = document.getElementById('form')
         this.img = this.node.querySelector('#form-img');
@@ -18,9 +17,8 @@ var form = {
         form._open()
         form._bind(
             params.value,
-            params.action === undefined ? false : params.action
+            params.action || false
         );
-        form.looping = (params.loop === undefined ? false : params.loop);
     },
     _open: function() {
         this.node.classList.add("display");
@@ -30,8 +28,8 @@ var form = {
     },
     _bind: function(value, selectAction) {
         if (value !== undefined) {
-            this.node.index.value = value.index !== undefined ? value.index : value.id;
-            this.img.src = value.src;
+            this.node.id.value = value.id;
+            this.img.src = value.url;
             this.node.sequence.value = value.sequence;
             this.node.action.value = value.action;
             if (selectAction) {
@@ -44,16 +42,12 @@ var form = {
         }
     },
     submit: function() {
-        var index = this.node.index.value;
         publisher.publish({
-            index: index,
+            id: this.node.id.value,
+            url : this.img.src,
             sequence: this.node.sequence.value,
             action: this.node.action.value
         })
-        if (this.looping) {
-            this.bind(parseInt(index) + 1);
-        } else {
-            this.close();
-        }
+        this.close();
     }
 }

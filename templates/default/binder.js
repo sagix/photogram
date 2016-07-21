@@ -1,16 +1,17 @@
 var binder = {
     basePath: "/templates/default",
     bind: function(value, node) {
-        node.dataset.index = value.id;
-        node.dataset.id = value.sequence;
-        node.querySelector("img").src = value.src;
+        node.dataset.id = value.id;
+        node.querySelector("img").src = value.url;
         node.querySelector(".sequence").textContent = value.sequence;
-        node.querySelector(".action").textContent = value.action;
+        actionNode = node.querySelector(".action");
+        actionNode.textContent = value.action;
+        applyFontSize(actionNode.parentNode, actionNode, .2, 2);
+        warnForDuplicate(node, value.action);
         this._bindPeriode(node, value);
         this._bindFx(node, value);
         node.addEventListener('click', function(evt) {
             if (!evt.srcElement.classList.contains("action") && !evt.srcElement.classList.contains("sequence")) {
-                binder._addAction(value);
                 form.open({
                     value: value
                 });
@@ -18,7 +19,6 @@ var binder = {
             }
         });
         node.querySelector('.action').addEventListener('click', function(evt) {
-            binder._addAction(value);
             form.open({
                 value: value,
                 action: true
@@ -85,14 +85,39 @@ var binder = {
                 return undefined;
 
         }
-    },
-    _addAction: function(value) {
-        // todo remove this patch
-        if (value.action === undefined) {
-            value.action = data.get(value.index);
-        }
-        if (value.action === undefined) {
-            value.action = elements.get(value.sequence).action;
-        }
     }
 };
+
+function applyFontSize(parent, node, minSize, maxSize) {
+    node.style.fontSize = maxSize + 'rem';
+    if (hasOverflow(parent)) {
+        node.style.fontSize = minSize + 'rem';
+        if (!hasOverflow(parent)) {
+            recApplyFontSize(parent, node, minSize, maxSize);
+        }
+    }
+}
+
+function recApplyFontSize(parent, node, minSize, maxSize) {
+    var halfSize = minSize + (maxSize - minSize) / 2;
+    node.style.fontSize = halfSize + 'rem';
+    if (hasOverflow(parent)) {
+        recApplyFontSize(parent, node, minSize, halfSize);
+    } else {
+        if (maxSize - minSize > .05) {
+            recApplyFontSize(parent, node, halfSize, maxSize);
+        }
+    }
+}
+
+function hasOverflow(node) {
+    return node.scrollHeight > node.clientHeight;
+}
+
+function warnForDuplicate(node, value) {
+    if (value.length > 0 && (value.slice(0, value.length / 2) === value.slice(value.length / 2, value.length) || value.slice(0, value.length / 3) === value.slice(value.length / 3, 2 * value.length / 3))) {
+        node.style.backgroundColor = 'red';
+    } else {
+        node.style.backgroundColor = '';
+    }
+}

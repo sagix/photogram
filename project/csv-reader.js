@@ -1,40 +1,39 @@
-var data = {
-
-    datas: {},
-    length: 0,
+var csvReader = {
 
     init: function(separator, quote) {
         this.separator = separator;
         this.quote = quote;
     },
 
-    get: function(id) {
-        return this.datas["id" + id];
-    },
-
     load: function(file, next) {
         var fileReader = new FileReader();
         fileReader.onload = function(f) {
-            data.parse(fileReader.result, next);
+            csvReader._parse(fileReader.result, next);
         }
-        fileReader.readAsText(file, next);
+        fileReader.readAsText(file);
     },
 
-    parse: function(data, next) {
+    _parse: function(data, next) {
+        var result = [];
         var allTextLines = data.split(/\r\n|\n/);
 
         for (var i = 0; i < allTextLines.length; i++) {
             var data = allTextLines[i].split(this.separator);
             if (data.length === 2) {
-                this.datas["id" + data[0]] = data[1];
-                this.length++;
+                result.push(this._createData(data[0], data[1]));
             }
             var data = allTextLines[i].split(this.separator + this.quote);
             if (data.length === 2) {
-                this.datas["id" + data[0]] = data[1].slice(0, -1).replace(/""/g, '"');
-                this.length++;
+                result.push(this._createData(data[0], data[1].slice(0, -1).replace(/""/g, '"')));
             }
         }
-        next();
+        next(result);
+    },
+    _createData: function(id, action){
+        return {
+            id : id,
+            sequence : id,
+            action: action
+        }
     }
 };
