@@ -7,25 +7,24 @@ var onLoad = function() {
 
     chrome.runtime.getBackgroundPage(function(b) {
         tmp.init(b.template, b.element);
-        loadDirEntry(b.entry, b.fromHistory)
+        loadDirEntry(b.entry)
     })
 
 };
 
 window.addEventListener('load', onLoad);
 
-function loadDirEntry(chosenEntry, withSave) {
+function loadDirEntry(chosenEntry) {
     if (chosenEntry !== undefined && chosenEntry.isDirectory) {
         jsonWriter.entry = chosenEntry;
         var dirReader = chosenEntry.createReader();
-
         var entries = [];
 
         // Keep calling readEntries() until no more results are returned.
         var readEntries = function() {
             dirReader.readEntries(function(results) {
                 if (!results.length) {
-                    listResults(entries, withSave);
+                    listResults(entries);
                 } else {
                     entries = entries.concat(toArray(results));
                     readEntries();
@@ -38,9 +37,23 @@ function loadDirEntry(chosenEntry, withSave) {
     }
 }
 
-function listResults(entries, withSave) {
+function listResults(entries) {
     var dataArgs = {
-        load: withSave ? jsonReader.load : csvReader.load,
+        compile :function(){
+            var result = {};
+            if(this.saveFile !== undefined){
+                result.file = this.saveFile;
+                result.load = jsonReader.load;
+            } else if(this.sourceFile !== undefined){
+                result.file = this.sourceFile;
+                result.load = csvReader.load;
+            } else {
+                result.load = function(file){
+                    console.error("data.csv file not found");
+                }
+            }
+            return result;
+        }
     }
 
     entries.forEach(function(item, index, array) {
@@ -51,17 +64,17 @@ function listResults(entries, withSave) {
                     URL.createObjectURL(file),
                     file.name.replace(/\.[^/.]+$/, "")
                 );
-            } else if (!withSave && file.name === "data.csv") {
-                dataArgs.file = file;
-            } else if (withSave && file.name === "save.json") {
-                dataArgs.file = file;
+            } else if (file.name === "data.csv") {
+                dataArgs.sourceFile = file;
+            } else if (file.name === "save.json") {
+                dataArgs.saveFile = file;
             }
             if (index === array.length - 1) {
-                handleEnd(dataArgs);
+                handleEnd(dataArgs.compile());
             }
         }, function(e) {
             if (index === array.length - 1) {
-                handleEnd(dataArgs);
+                handleEnd(dataArgs.compile());
             }
             errorHandler(e);
         });
