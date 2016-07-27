@@ -54,7 +54,7 @@ tmp = {
             label.textContent = ele.name;
             label.htmlFor = ele.id;
             var img = document.createElement("img");
-            img.src = '/templates/default' + ele.screenshot;
+            img.src = '/templates/' + tmp.form.template.value + '/' + ele.screenshot;
             label.appendChild(img);
             this.elements.appendChild(input);
             this.elements.appendChild(label);

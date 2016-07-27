@@ -1,11 +1,6 @@
 {
     "name": "Default",
     "elements": [{
-        "id": "legacy",
-        "name": "Legacy",
-        "file": "/elements/legacy.html",
-        "screenshot": "/screenshots/legacy.png"
-    }, {
         "id": "small",
         "name": "Small",
         "file": "/elements/small.html",
