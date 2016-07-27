@@ -25,7 +25,9 @@ var lastDir = {
             reader.readEntries(function(results) {
                 results.forEach(function(item) {
                     item.file(function(file) {
-                        if (file.type.startsWith("image") && img.src === "") {
+                        if (file.type.startsWith("image") &&
+                            file.size > 10000 &&
+                            img.src === "") {
                             img.src = URL.createObjectURL(file);
                         }
                     });
