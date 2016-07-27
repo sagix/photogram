@@ -55,6 +55,8 @@
         <input id="form-id" type="hidden" name="id" />
         <img id="form-img" />
         <input id="form-sequence" name="sequence" data-i18n-attr="placeholder:form_sequence_placeholder" />
+        <input id="fx" name="fx" type="checkbox" />
+        <label for='fx' data-i18n="form_checkbox_fx">Fx</label>
         <textarea id="form-action" name="action" data-i18n-attr="placeholder:form_action_placeholder" rows="4"></textarea>
         <button type="submit" class="md-button" data-i18n="form_button_apply">V</button>
         <button type="button" class="md-button" id="form-close" data-i18n="form_button_close">F</button>
@@ -65,10 +67,11 @@
     form.init();
     form._open();
     form._bind({
-        "index": "55",
-        "src": "http://images-cdn.moviepilot.com/images/c_fill,h_800,w_1200/t_mp_quality/nzrmxlmnzpyuqwddwms3/can-any-movie-match-the-success-of-star-wars-the-force-awakens-768644.jpg",
-        "sequence": "55B",
-        "action": "2 femmes hurlent la tête sous l'eau. Le sbire veut des informations"
+        index: "55",
+        url: "http://images-cdn.moviepilot.com/images/c_fill,h_800,w_1200/t_mp_quality/nzrmxlmnzpyuqwddwms3/can-any-movie-match-the-success-of-star-wars-the-force-awakens-768644.jpg",
+        sequence: "55B",
+        action: "2 femmes hurlent la tête sous l'eau. Le sbire veut des informations",
+        fx: true
     });
 </script>
 

@@ -1,12 +1,15 @@
 {
     "app_description": {
-        "message": "Petite application qui génère des vignettes à partir de photogramme."
+        "message": "Application qui génère des vignettes à partir de photogramme."
     },
     "form_sequence_placeholder": {
         "message": "séquence"
     },
     "form_action_placeholder": {
         "message": "action"
+    },
+    "form_checkbox_fx": {
+        "message": "Fx"
     },
     "form_button_apply": {
         "message": "Valider"

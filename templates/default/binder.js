@@ -62,10 +62,10 @@ var binder = {
             return;
         }
         fx.src = this.basePath + "/svg/auto-fix.svg";
-        if (value.fx === undefined) {
-            fx.classList.add("hide");
-        } else {
+        if (value.fx) {
             fx.classList.remove("hide");
+        } else {
+            fx.classList.add("hide");
         }
     },
     _periodeToClassName: function(value) {

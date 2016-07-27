@@ -3,13 +3,16 @@
         "message": "Photogram"
     },
     "app_description": {
-        "message": "Small application which generates stickers with photogram."
+        "message": "Application which generates stickers with photogram."
     },
     "form_sequence_placeholder": {
         "message": "sequence"
     },
     "form_action_placeholder": {
         "message": "action"
+    },
+    "form_checkbox_fx": {
+        "message": "Fx"
     },
     "form_button_apply": {
         "message": "Save"

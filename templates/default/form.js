@@ -32,6 +32,7 @@ var form = {
             this.img.src = value.url;
             this.node.sequence.value = value.sequence;
             this.node.action.value = value.action;
+            this.node.fx.checked = value.fx ? true : false;
             if (selectAction) {
                 this.node.action.select();
             } else {
@@ -46,7 +47,8 @@ var form = {
             id: this.node.id.value,
             url : this.img.src,
             sequence: this.node.sequence.value,
-            action: this.node.action.value
+            action: this.node.action.value,
+            fx: this.node.fx.checked ? "fx" : ""
         })
         this.close();
     }
