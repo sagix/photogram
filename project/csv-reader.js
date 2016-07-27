@@ -24,6 +24,9 @@ var csvReader = {
                         id: r[0],
                         sequence: r[0],
                         action: r[1],
+                        place: (r[2] || "").trim(),
+                        periode: (r[3] || "").trim(),
+                        fx: r[4],
                     })
                 }
                 next(result);

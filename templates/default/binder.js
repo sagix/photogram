@@ -1,9 +1,15 @@
 var binder = {
     basePath: "/templates/default",
+    sequenceMap: new Map(),
     bind: function(value, node) {
         node.dataset.id = value.id;
         node.querySelector("img").src = value.url;
-        node.querySelector(".sequence").textContent = value.sequence;
+        var sequence = node.querySelector(".sequence");
+        sequence.textContent = value.sequence;
+        if (value.place !== undefined && value.place !== "") {
+            sequence.classList.add('sequence-colored');
+            sequence.classList.add('sequence-colored-' + this.getSequenceColor(value.place));
+        }
         actionNode = node.querySelector(".action");
         actionNode.textContent = value.action;
         applyFontSize(actionNode.parentNode, actionNode, .2, 2);
@@ -11,7 +17,7 @@ var binder = {
         this._bindPeriode(node, value);
         this._bindFx(node, value);
         node.addEventListener('click', function(evt) {
-            if (!evt.srcElement.classList.contains("action") && !evt.srcElement.classList.contains("sequence")) {
+            if (!evt.srcElement.classList.contains("action")) {
                 form.open({
                     value: value
                 });
@@ -25,10 +31,16 @@ var binder = {
             });
             evt.preventDefault();
         });
-        node.querySelector('.sequence').addEventListener('click', function(evt) {
-            evt.currentTarget.classList.toggle('sequence-night');
-        });
         return node;
+    },
+    getSequenceColor: function(value) {
+        if (this.sequenceMap.get(value) === undefined) {
+            this.sequenceMap.set(value, {
+                colorNumber: this.sequenceMap.size,
+                value: value
+            });
+        }
+        return this.sequenceMap.get(value).colorNumber;
     },
     _bindPeriode: function(node, value) {
         var periode = node.querySelector(".periode");
@@ -37,9 +49,9 @@ var binder = {
         }
         var src = this._periodeToSrc(value.periode);
         if (src === undefined) {
-            periode.style.display = "none"
+            periode.classList.add("hide");
         } else {
-            periode.style.display = "";
+            periode.classList.remove("hide");
             periode.classList.add(this._periodeToClassName(value.periode));
             periode.src = src;
         }
@@ -51,35 +63,35 @@ var binder = {
         }
         fx.src = this.basePath + "/svg/auto-fix.svg";
         if (value.fx === undefined) {
-            fx.style.display = "none";
+            fx.classList.add("hide");
         } else {
-            fx.style.display = "";
+            fx.classList.remove("hide");
         }
     },
     _periodeToClassName: function(value) {
-        switch (value) {
-            case "matin":
-                return "dot-orange";
-            case "soir":
-                return "dot-purple";
-            case "jour":
-                return "dot-blue";
-            case "nuit":
-                return "dot-night";
+        switch (toSingleLetter(value)) {
+            case "m":
+                return "dot-light";
+            case "s":
+                return "dot-dark";
+            case "j":
+                return "dot-lighter";
+            case "n":
+                return "dot-darker";
             default:
                 return "";
 
         }
     },
     _periodeToSrc: function(value) {
-        switch (value) {
-            case "matin":
+        switch (toSingleLetter(value)) {
+            case "m":
                 return this.basePath + "/svg/weather-sunset-up.svg"
-            case "soir":
+            case "s":
                 return this.basePath + "/svg/weather-sunset-down.svg"
-            case "jour":
+            case "j":
                 return this.basePath + "/svg/weather-sunny.svg"
-            case "nuit":
+            case "n":
                 return this.basePath + "/svg/weather-night.svg"
             default:
                 return undefined;
@@ -87,6 +99,12 @@ var binder = {
         }
     }
 };
+
+function toSingleLetter(value) {
+    return value === undefined || value.length == 0 ?
+        undefined :
+        value.toLowerCase()[0];
+}
 
 function applyFontSize(parent, node, minSize, maxSize) {
     node.style.fontSize = maxSize + 'rem';
@@ -115,7 +133,9 @@ function hasOverflow(node) {
 }
 
 function warnForDuplicate(node, value) {
-    if (value.length > 0 && (value.slice(0, value.length / 2) === value.slice(value.length / 2, value.length) || value.slice(0, value.length / 3) === value.slice(value.length / 3, 2 * value.length / 3))) {
+    if (value.length > 0 &&
+        (value.slice(0, value.length / 2) === value.slice(value.length / 2, value.length) ||
+            value.slice(0, value.length / 3) === value.slice(value.length / 3, 2 * value.length / 3))) {
         node.style.backgroundColor = 'red';
     } else {
         node.style.backgroundColor = '';

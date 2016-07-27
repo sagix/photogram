@@ -43,6 +43,9 @@ var elements = {
                     ele.sequence = s.sequence;
                     ele.action = s.action;
                     ele.color = s.color === undefined ? 0 : s.color;
+                    ele.place = s.place;
+                    ele.periode = s.periode;
+                    ele.fx = s.fx;
                     save.splice(save.indexOf(s), 1);
                     break;
                 }

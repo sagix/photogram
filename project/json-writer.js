@@ -3,7 +3,7 @@ var jsonWriter = {
             this.fileName = fileName;
     },
     write: function(elementList) {
-        this.entry.getFile(fileName, {
+        this.entry.getFile(this.fileName, {
                 create: true,
                 exclusive: false
             },
