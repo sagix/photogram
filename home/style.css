@@ -5,6 +5,25 @@ body {
     overflow-y: scroll;
     height: 100%;
 }
+.btn-delete {
+    display: inline-block;
+    opacity: 0;
+    background: #fff;
+    color: #444;
+    font-weight: bold;
+    border: 1px solid silver;
+    border-radius: 100px;
+    position: absolute;
+    top: -1.3rem;
+    height: 2.6rem;
+    width: 2.6rem;
+    left: -1.3rem;
+    transition: opacity 0.4s;
+}
+.btn-delete:active {
+    background: #ddd;
+    color: #222;
+}
 #grid {
     display: flex;
     list-style-type: none;
@@ -15,21 +34,26 @@ body {
     padding: .4rem;
 }
 #grid> li {
+    position: relative;
+    ;
     display: flex;
     align-content: flex-end;
     flex-direction: column;
     width: 24rem;
     min-width: 12rem;
-    margin: .4rem;
+    margin: 1.2rem;
     padding: .8rem;
     padding-bottom: 0;
     text-align: center;
     border: 1px solid silver;
     background-color: #FFF;
 }
-#grid > li:hover {
+#grid> li:hover {
     outline: .3rem solid #CCC;
     cursor: pointer;
+}
+#grid> li:hover .btn-delete {
+    opacity: 1;
 }
 #grid .picture {
     min-height: 16rem;
@@ -66,7 +90,7 @@ form label {
 label {
     opacity: .5;
 }
-:checked + label {
+:checked+ label {
     opacity: 1;
 }
 form img {

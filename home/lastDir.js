@@ -15,11 +15,16 @@ var lastDir = {
         var picture = document.createElement('div');
         var img = document.createElement('img');
         var span = document.createElement('span');
+        var deleteButton = document.createElement('button');
         picture.className = "picture";
         span.textContent = dir.name;
+        deleteButton.classList.add('btn-delete');
+        deleteButton.textContent = '\u2715';
         picture.appendChild(img);
         listDir.appendChild(picture);
         listDir.appendChild(span);
+        listDir.appendChild(deleteButton);
+        listDir.dataset.id = dir.id;
         chrome.fileSystem.restoreEntry(dir.id, function(entry) {
             reader = entry.createReader();
             reader.readEntries(function(results) {
@@ -34,6 +39,10 @@ var lastDir = {
                 })
             });
         });
+        deleteButton.addEventListener('click', function(event) {
+            lastDir.delete(dir);
+            event.stopPropagation();
+        });
         listDir.addEventListener('click', function(event) {
             chrome.fileSystem.restoreEntry(dir.id, function(entry) {
                 open(entry, true);
@@ -41,11 +50,11 @@ var lastDir = {
         });
         lastDir.root.appendChild(listDir);
     },
+    removeEntry: function(dir) {
+        lastDir.root.removeChild(document.querySelector('[data-id="' + dir.id + '"]'));
+    },
     save: function(entry) {
-        var newItem = {
-            name: entry.name,
-            id: chrome.fileSystem.retainEntry(entry)
-        };
+        var newItem = this.createItem(entry)
         chrome.storage.local.get('lastDir', function(items) {
             if (items.lastDir == undefined) {
                 items.lastDir = new Array();
@@ -64,6 +73,25 @@ var lastDir = {
                 chrome.storage.local.set(items);
             }
         });
+    },
+    delete: function(dir) {
+        chrome.storage.local.get('lastDir', function(items) {
+            var index = -1;
+            items.lastDir.forEach(function(v, i) {
+                if (this.id == v.id) index = i;
+            }, dir);
+            if (index > -1) {
+                items.lastDir.splice(index, 1);
+            }
+            lastDir.removeEntry(dir);
+            chrome.storage.local.set(items);
+        });
+    },
+    createItem: function(entry) {
+        return {
+            name: entry.name,
+            id: chrome.fileSystem.retainEntry(entry)
+        };
     }
 
 }

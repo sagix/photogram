@@ -11,9 +11,10 @@ function open(entry, fromHistory){
         b.template = tmp.template();
         b.element = tmp.element();
         chrome.app.window.create('/project/main.html', {
-            'bounds': {
-                'width': 1080,
-                'height': 600
+            id: entry.name,
+            bounds: {
+                width: 1080,
+                height: 600
             }
         });
     })
