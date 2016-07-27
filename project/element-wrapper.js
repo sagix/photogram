@@ -33,6 +33,8 @@ var elements = {
             if (element.id === value.id) {
                 element.sequence = value.sequence;
                 element.action = value.action;
+                element.fx = value.fx;
+                element.periode = value.periode;
             }
         }
     },

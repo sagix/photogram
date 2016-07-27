@@ -14,6 +14,24 @@
     "form_checkbox_fx": {
         "message": "Fx"
     },
+    "form_periode_label": {
+        "message": "Periode"
+    },
+    "form_periode_null": {
+        "message": "None"
+    },
+    "form_periode_morning": {
+        "message": "Morning"
+    },
+    "form_periode_evening": {
+        "message": "Evening"
+    },
+    "form_periode_day": {
+        "message": "Day"
+    },
+    "form_periode_night": {
+        "message": "Night"
+    },
     "form_button_apply": {
         "message": "Save"
     },

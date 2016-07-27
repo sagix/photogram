@@ -33,6 +33,7 @@ var form = {
             this.node.sequence.value = value.sequence;
             this.node.action.value = value.action;
             this.node.fx.checked = value.fx ? true : false;
+            this.node.periode.value = (value.periode || "").toLowerCase()[0];
             if (selectAction) {
                 this.node.action.select();
             } else {
@@ -48,7 +49,8 @@ var form = {
             url : this.img.src,
             sequence: this.node.sequence.value,
             action: this.node.action.value,
-            fx: this.node.fx.checked ? "fx" : ""
+            fx: this.node.fx.checked ? "fx" : "",
+            periode: this.node.periode.value
         })
         this.close();
     }

@@ -11,6 +11,24 @@
     "form_checkbox_fx": {
         "message": "Fx"
     },
+    "form_periode_label": {
+        "message": "Période"
+    },
+    "form_periode_null": {
+        "message": "Aucune"
+    },
+    "form_periode_morning": {
+        "message": "Matin"
+    },
+    "form_periode_evening": {
+        "message": "Soir"
+    },
+    "form_periode_day": {
+        "message": "Jour"
+    },
+    "form_periode_night": {
+        "message": "Nuit"
+    },
     "form_button_apply": {
         "message": "Valider"
     },

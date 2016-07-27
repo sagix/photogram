@@ -52,6 +52,10 @@ var binder = {
             periode.classList.add("hide");
         } else {
             periode.classList.remove("hide");
+            periode.classList.remove("dot-light");
+            periode.classList.remove("dot-lighter");
+            periode.classList.remove("dot-dark");
+            periode.classList.remove("dot-darker");
             periode.classList.add(this._periodeToClassName(value.periode));
             periode.src = src;
         }
