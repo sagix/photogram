@@ -35,6 +35,14 @@
             margin: 0;
         }
 
+        .action-container {
+            flex: 1;
+        }
+
+        .indicators {
+            flex: 0;
+        }
+
         .legend {
             height: 9.6rem;
             overflow: hidden;
@@ -169,12 +177,12 @@
     <div class="ele">
         <img class="img">
         <div class="legend">
-            <div>
+            <div class="indicators">
                 <span class="sequence"></span>
                 <img class="dot periode" />
                 <img class="dot dot-green fx" />
             </div>
-            <div>
+            <div class="action-container">
                 <p class="action"></p>
             </div>
         </div>

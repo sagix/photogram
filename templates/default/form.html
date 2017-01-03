@@ -37,13 +37,32 @@
         }
 
         #form-sequence,
-        #form-action {
-            width: 100%;
+        #form-action,
+        #place,
+        #placeList,
+        #periode,
+        #fx {
+            border-radius: 2px;
             background-color: #EEE;
             border: none;
             margin-bottom: .8rem;
             font-family: "Courier New", Courier, monospace;
             font-size: 2.4rem;
+        }
+        label{
+            padding: 1rem;
+        }
+        #form-action{
+            width: 100%;
+        }
+        #form-sequence{
+            width: 55%;
+        }
+        #placeList{
+            width: 40%;
+        }
+        #periode{
+            width: 20%;
         }
     </style>
     <script src="../publisher-log.js"></script>
@@ -65,6 +84,12 @@
         </select>
         <label for='fx' data-i18n="form_checkbox_fx">Fx</label>
         <input id="fx" name="fx" type="checkbox" />
+        <div>
+            <label for="place" data-i18n="form_place_label">P</label>
+            <input id="place" name="place" data-i18n-attr="placeholder:form_place_new" />
+            <span data-i18n="form_place_or"></span>
+            <select id="placeList" name="placeList"></select>
+        </div>
         <textarea id="form-action" name="action" data-i18n-attr="placeholder:form_action_placeholder" rows="4"></textarea>
         <button type="submit" class="md-button" data-i18n="form_button_apply">V</button>
         <button type="button" class="md-button" id="form-close" data-i18n="form_button_close">F</button>
@@ -74,13 +99,19 @@
 <script>
     form.init();
     form._open();
+    var map = new Map();
+    map.set("canyon", {
+        value: "canyon"
+    })
+    form._bindPlaceList(map);
     form._bind({
         index: "55",
         url: "http://images-cdn.moviepilot.com/images/c_fill,h_800,w_1200/t_mp_quality/nzrmxlmnzpyuqwddwms3/can-any-movie-match-the-success-of-star-wars-the-force-awakens-768644.jpg",
         sequence: "55B",
         action: "2 femmes hurlent la tête sous l'eau. Le sbire veut des informations",
         fx: true,
-        periode:""
+        periode: "",
+        place: "canyon"
     });
 </script>
 

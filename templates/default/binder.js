@@ -6,9 +6,28 @@ var binder = {
         node.querySelector("img").src = value.url;
         var sequence = node.querySelector(".sequence");
         sequence.textContent = value.sequence;
-        if (value.place !== undefined && value.place !== "") {
-            sequence.classList.add('sequence-colored');
-            sequence.classList.add('sequence-colored-' + this.getSequenceColor(value.place));
+        sequence.classList.remove(
+            'sequence-colored',
+            'sequence-colored-0',
+            'sequence-colored-1',
+            'sequence-colored-2',
+            'sequence-colored-3',
+            'sequence-colored-4',
+            'sequence-colored-5',
+            'sequence-colored-6',
+            'sequence-colored-7',
+            'sequence-colored-8',
+            'sequence-colored-9',
+            'sequence-colored-10',
+            'sequence-colored-11',
+            'sequence-colored-12',
+            'sequence-colored-13',
+            'sequence-colored-14',
+            'sequence-colored-15',
+            'sequence-colored-16'
+        );
+        if (value.place) {
+            sequence.classList.add('sequence-colored', 'sequence-colored-' + this.getSequenceColor(value.place));
         }
         actionNode = node.querySelector(".action");
         actionNode.textContent = value.action;
@@ -19,7 +38,8 @@ var binder = {
         node.addEventListener('click', function(evt) {
             if (!evt.srcElement.classList.contains("action")) {
                 form.open({
-                    value: value
+                    value: value,
+                    placeList: binder.sequenceMap
                 });
                 evt.preventDefault();
             }
@@ -27,6 +47,7 @@ var binder = {
         node.querySelector('.action').addEventListener('click', function(evt) {
             form.open({
                 value: value,
+                placeList: binder.sequenceMap,
                 action: true
             });
             evt.preventDefault();

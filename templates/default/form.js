@@ -15,6 +15,7 @@ var form = {
     },
     open: function(params) {
         form._open()
+        form._bindPlaceList(params.placeList)
         form._bind(
             params.value,
             params.action || false
@@ -34,6 +35,8 @@ var form = {
             this.node.action.value = value.action;
             this.node.fx.checked = value.fx ? true : false;
             this.node.periode.value = (value.periode || "").toLowerCase()[0];
+            this.node.place.value = "";
+            this.node.placeList.value = (value.place || "");
             if (selectAction) {
                 this.node.action.select();
             } else {
@@ -43,14 +46,31 @@ var form = {
             form.close();
         }
     },
+    _bindPlaceList: function(placeList) {
+        var list = this.node.querySelector('#placeList')
+        while (list.hasChildNodes()) {
+            list.removeChild(list.lastChild);
+        }
+        var option = document.createElement('option');
+        option.value = "";
+        option.textContent = "";
+        list.appendChild(option);
+        for (place of placeList.values()) {
+            var option = document.createElement('option');
+            option.value = place.value;
+            option.textContent = place.value;
+            list.appendChild(option);
+        }
+    },
     submit: function() {
         publisher.publish({
             id: this.node.id.value,
-            url : this.img.src,
+            url: this.img.src,
             sequence: this.node.sequence.value,
             action: this.node.action.value,
             fx: this.node.fx.checked ? "fx" : "",
-            periode: this.node.periode.value
+            periode: this.node.periode.value,
+            place: this.node.placeList.value || this.node.place.value || ""
         })
         this.close();
     }

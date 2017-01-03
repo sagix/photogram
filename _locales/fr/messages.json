@@ -11,6 +11,15 @@
     "form_checkbox_fx": {
         "message": "Fx"
     },
+    "form_place_label": {
+        "message": "Lieu"
+    },
+    "form_place_new": {
+        "message": "Nouveau lieu"
+    },
+    "form_place_or": {
+        "message": "ou"
+    },
     "form_periode_label": {
         "message": "Période"
     },

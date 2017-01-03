@@ -35,6 +35,7 @@ var elements = {
                 element.action = value.action;
                 element.fx = value.fx;
                 element.periode = value.periode;
+                element.place = value.place;
             }
         }
     },
