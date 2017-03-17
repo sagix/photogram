@@ -31,7 +31,7 @@ tmp = {
     },
     _onTemplateChange: function() {
         var xhr1 = new XMLHttpRequest();
-        xhr1.open('GET', '/templates/' + tmp.form.template.value + '/manifest.json', true);
+        xhr1.open('GET', '/templates/' + tmp.form.template.value + '/config.json', true);
 
         xhr1.onreadystatechange = function() {
             if (xhr1.readyState == 4 && xhr1.status == 200) {
