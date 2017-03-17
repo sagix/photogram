@@ -1,13 +1,12 @@
 var lastDir = {
     init: function() {
-        chrome.storage.local.get('lastDir', function(items) {
-            if (items.lastDir === undefined) {
-                return;
-            }
-            lastDir.root = document.getElementById('grid')
-            items.lastDir.forEach(function(dir) {
-                lastDir.addEntry(dir);
-            });
+        var bundle = JSON.parse(localStorage.getItem('lastDir'));
+        if (bundle === null || bundle.lastDir === null) {
+            return;
+        }
+        lastDir.root = document.getElementById('grid')
+        bundle.lastDir.forEach(function(dir) {
+            lastDir.addEntry(dir);
         });
     },
     addEntry: function(dir) {
