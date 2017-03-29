@@ -10,5 +10,10 @@
         "name": "Large",
         "file": "/elements/large.html",
         "screenshot": "/screenshots/large.png"
+    }, {
+        "id": "thumbnail",
+        "name": "Thumbnail",
+        "file": "/elements/thumbnail.html",
+        "screenshot": "/screenshots/thumbnail.png"
     }]
 }

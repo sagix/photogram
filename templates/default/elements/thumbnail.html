@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Default - Small</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../../res/style.css">
+    <style>
+        .ele {
+            font-family: "Courier New", Courier, monospace;
+            display: inline-block;
+            border: 1px solid silver;
+            width: 15.7rem;
+            margin: .8rem;
+            overflow: auto;
+            background-color: #FFF;
+            padding: .8rem;
+            text-align: left;
+            page-break-inside: avoid;
+            box-sizing: border-box;
+        }
+
+        @media print {
+            .ele {
+                margin: 1.4rem;
+            }
+        }
+
+        .img {
+            width: 100%;
+            display: block;
+        }
+
+        .action {
+            line-height: initial;
+            margin: 0;
+        }
+
+        .action-container {
+            display: none;
+        }
+
+        .indicators {
+            flex: 0;
+        }
+
+        .legend {
+
+            overflow: hidden;
+            padding-top: .8rem;
+            text-align:center
+        }
+
+        .sequence {
+            display: inline-block;
+            min-width: 6rem;
+            line-height: 5.2rem;
+            border-radius: .4rem;
+            font-size: 2.6rem;
+            font-weight: bold;
+            text-align: center;
+            padding: 0 .6rem;
+            -webkit-print-color-adjust: exact;
+        }
+
+        .sequence-colored {
+            color: #FFFFFF;
+        }
+
+        .sequence-colored-0 {
+            background-color: #F44336;
+        }
+
+        .sequence-colored-1 {
+            background-color: #E91E63;
+        }
+
+        .sequence-colored-2 {
+            background-color: #9C27B0;
+        }
+
+        .sequence-colored-3 {
+            background-color: #673AB7;
+        }
+
+        .sequence-colored-4 {
+            background-color: #3F51B5;
+        }
+
+        .sequence-colored-5 {
+            background-color: #2196F3;
+        }
+
+        .sequence-colored-6 {
+            background-color: #03A9F4;
+        }
+
+        .sequence-colored-7 {
+            background-color: #00BCD4;
+        }
+
+        .sequence-colored-8 {
+            background-color: #009688;
+        }
+
+        .sequence-colored-9 {
+            background-color: #4CAF50;
+        }
+
+        .sequence-colored-10 {
+            background-color: #8BC34A;
+        }
+
+        .sequence-colored-11 {
+            background-color: #CDDC39;
+        }
+
+        .sequence-colored-12 {
+            background-color: #FFEB3B;
+        }
+
+        .sequence-colored-13 {
+            background-color: #FFC107;
+        }
+
+        .sequence-colored-14 {
+            background-color: #FF9800;
+        }
+
+        .sequence-colored-15 {
+            background-color: #FF5722;
+        }
+
+        .sequence-colored-16 {
+            background-color: #795548;
+        }
+
+        .dot {
+            display:none;
+        }
+
+
+    </style>
+    <script src="../../form-log.js"></script>
+    <script src="../binder.js"></script>
+</head>
+
+<body>
+    <div class="ele">
+        <img class="img">
+        <div class="legend">
+            <div class="indicators">
+                <span class="sequence"></span>
+                <img class="dot periode" />
+                <img class="dot dot-green fx" />
+            </div>
+            <div class="action-container">
+                <p class="action"></p>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    var base = document.getElementsByClassName("ele")[0];
+    var body = document.querySelector("body");
+    binder.basePath = "..";
+
+    function bindToNode(value, node) {
+        body.appendChild(node);
+        binder.bind(value, node);
+    }
+    bindToNode({
+        "id": "55",
+        "url": "http://images-cdn.moviepilot.com/images/c_fill,h_800,w_1200/t_mp_quality/nzrmxlmnzpyuqwddwms3/can-any-movie-match-the-success-of-star-wars-the-force-awakens-768644.jpg",
+        "sequence": "55B",
+        "action": "Run lola run",
+        "place": "rue"
+    }, base);
+    bindToNode({
+        "id": "55",
+        "url": "http://images-cdn.moviepilot.com/images/c_fill,h_800,w_1200/t_mp_quality/nzrmxlmnzpyuqwddwms3/can-any-movie-match-the-success-of-star-wars-the-force-awakens-768644.jpg",
+        "sequence": "55B",
+        "periode": "matin",
+        "action": "2 femmes hurlent la tête sous l'eau. Le sbire veut des informations"
+    }, document.importNode(base, true));
+    bindToNode({
+        "id": "55",
+        "url": "http://images-cdn.moviepilot.com/images/c_fill,h_800,w_1200/t_mp_quality/nzrmxlmnzpyuqwddwms3/can-any-movie-match-the-success-of-star-wars-the-force-awakens-768644.jpg",
+        "sequence": "55B",
+        "periode": "soir",
+        "action": "2 femmes hurlent la tête sous l'eau. Le sbire veut des informations, 2 femmes hurlent la tête sous l'eau. Le sbire veut des informations, 2 femmes hurlent la tête sous l'eau. Le sbire veut des informations"
+    }, document.importNode(base, true));
+    bindToNode({
+        "id": "55",
+        "url": "http://images-cdn.moviepilot.com/images/c_fill,h_800,w_1200/t_mp_quality/nzrmxlmnzpyuqwddwms3/can-any-movie-match-the-success-of-star-wars-the-force-awakens-768644.jpg",
+        "sequence": "55B",
+        "periode": "jour",
+        "action": "2 femmes hurlent la tête sous l'eau. Le sbire veut des informations"
+    }, document.importNode(base, true));
+    bindToNode({
+        "id": "55",
+        "url": "http://images-cdn.moviepilot.com/images/c_fill,h_800,w_1200/t_mp_quality/nzrmxlmnzpyuqwddwms3/can-any-movie-match-the-success-of-star-wars-the-force-awakens-768644.jpg",
+        "sequence": "55B",
+        "periode": "nuit",
+        "fx": "fx",
+        "action": "2 femmes hurlent la tête sous l'eau. Le sbire veut des informations"
+    }, document.importNode(base, true));
+    bindToNode({
+        "id": "55",
+        "url": "http://images-cdn.moviepilot.com/images/c_fill,h_800,w_1200/t_mp_quality/nzrmxlmnzpyuqwddwms3/can-any-movie-match-the-success-of-star-wars-the-force-awakens-768644.jpg",
+        "sequence": "55B",
+        "fx": "fx",
+        "action": "2 femmes hurlent la tête sous l'eau. Le sbire veut des informations"
+    }, document.importNode(base, true));
+    bindToNode({
+        "id": "55",
+        "url": "http://images-cdn.moviepilot.com/images/c_fill,h_800,w_1200/t_mp_quality/nzrmxlmnzpyuqwddwms3/can-any-movie-match-the-success-of-star-wars-the-force-awakens-768644.jpg",
+        "sequence": "55B",
+        "action": "2 femmes hurlent la tête sous l'eau. Le sbire veut des informations2 femmes hurlent la tête sous l'eau. Le sbire veut des informations"
+    }, document.importNode(base, true));
+</script>
+
+</html>

@@ -31,8 +31,13 @@ var binder = {
         }
         actionNode = node.querySelector(".action");
         actionNode.textContent = value.action;
-        applyFontSize(actionNode.parentNode, actionNode, .2, 2);
-        warnForDuplicate(node, value.action);
+        if(typeof applyFontSize === "function"){
+            applyFontSize(actionNode.parentNode, actionNode, .2, 2);
+        }
+        if(typeof warnForDuplicate === "function"){
+            warnForDuplicate(node, value.action);
+        }
+
         this._bindPeriode(node, value);
         this._bindFx(node, value);
         node.addEventListener('click', function(evt) {
