@@ -49,5 +49,17 @@
     },
     "new_project": {
         "message": "New project"
+    },
+    "banne_title": {
+        "message": "Photogram is now a website"
+    },
+    "banne_description_1": {
+        "message": "You are using the old version of Photogram."
+    },
+    "banne_description_2": {
+        "message": "Discover the new features on the website."
+    },
+    "banne_button": {
+        "message": "VISIT photogram.app"
     }
 }

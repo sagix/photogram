@@ -46,5 +46,17 @@
     },
     "new_project": {
         "message": "Nouveau projet"
+    },
+    "banne_title": {
+        "message": "Photogram est maintenant un site web"
+    },
+    "banne_description_1": {
+        "message": "Vous utilisez l'ancienne version de Photogram."
+    },
+    "banne_description_2": {
+        "message": "Découvrez les nouvelles fonctionnalités sur le site web."
+    },
+    "banne_button": {
+        "message": "VISITEZ photogram.app"
     }
 }
